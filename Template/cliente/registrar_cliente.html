@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% load static %}
+{% block contenido %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="box box-primary">
+				<div class="box-header with-border">
+					<h3 class="box-title">Formulario Registro de Cliente</h3>
+				</div>
+				<!-- /.box-header -->
+				<!-- form start -->
+				<form method="POST" role="form">
+					<div class="box-body">
+						{% csrf_token %}
+						<!-- Row 1 -->
+						<div class="row">
+							<div class="form-group col-md-2">
+								<label for="id_SectorEconomico">Sector Economico</label>
+								{{form.SectorEconomico}}
+							</div>
+							<div class="form-group col-md-2">
+								<label for="id_TipoPersona">Tipo de Persona</label>
+								{{form.TipoPersona}}
+							</div>
+							<div class="form-group col-md-2">
+								<label for="id_NroDoc">Numero Documento</label>
+								{{form.NroDoc}}
+								{% if form.NroDoc.errors %}
+							    <ol>
+							    {% for error in form.NroDoc.errors %}
+							        <li><strong>{{ error|escape }}</strong></li>
+							    {% endfor %}
+							    </ol>
+							{% endif %}
+							</div>
+							<div class="form-group col-md-2">
+								<label for="id_IdTipoDoc">Tipo de Documento</label>
+								{{form.IdTipoDoc}}
+							</div>
+						</div>
+						<!-- Row 2 -->
+						<div class="row">
+							<div class="form-group col-md-2">
+								<label for="id_PrimerApellido">Apellido/s</label>
+								{{form.PrimerApellido}}
+							</div>
+							<div class="form-group col-md-2">
+								<label for="id_PrimerNombre">Nombre/s</label>
+								{{form.PrimerNombre}}
+							</div>
+							<div class="form-group col-md-2">
+								<label for="id_NombreCompleto">Nombre Completo</label>
+								{{form.NombreCompleto}}
+							</div>
+							<div class="form-group col-md-2">
+								<label for="id_FechaNacimiento">Fecha de Nacimiento</label>
+								{{form.FechaNacimiento}}
+							</div>
+							<div class="form-group col-md-2">
+								<label for="id_Nacionalidad">Nacionalidad</label>
+								{{form.Nacionalidad}}
+							</div>
+							<div class="form-group col-md-2">
+								<label for="id_EstadoCivil">Estado Civil</label>
+								{{form.EstadoCivil}}
+							</div>
+						</div>
+						<!-- Row 3 -->
+						<div class="row">
+							<div class="form-group col-md-2">
+								<label for="id_Genero">Genero</label>
+								{{form.Genero}}
+							</div>
+							<div class="form-group col-md-2">
+								<label for="id_Telefono">Telefono</label>
+								{{form.Telefono}}
+							</div>
+							<div class="form-group col-md-2">
+								<label for="id_TipoDireccion">Tipo de Direccion</label>
+								{{form.TipoDireccion}}
+							</div>
+							<div class="form-group col-md-2">
+								<label for="id_Pais">Pais</label>
+								{{form.Pais}}
+							</div>
+						</div>
+						<!-- Row 4 -->
+						<div class="row">
+							<div class="form-group col-md-2">
+								<label for="id_Departamento">Departamento</label>
+								{{form.Departamento}}
+							</div>
+							<div class="form-group col-md-2">
+								<label for="id_Ciudad">Ciudad</label>
+								{{form.Ciudad}}
+							</div>
+							<div class="form-group col-md-2">
+								<label for="id_Barrio">Barrio</label>
+								{{form.Barrio}}
+							</div>
+							<div class="form-group col-md-6">
+								<label for="id_DireccionLibre">Direccion Libre</label>
+								{{form.DireccionLibre}}
+							</div>
+						</div>
+					</div>
+					<!-- /.box-body -->
+					<button class="btn btn-primary btn-lg" id="miModal" data-toggle="modal" data-target="#myModal">
+					  Verificar
+					</button>
+
+					<!-- Modal -->
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<h4 class="modal-title" id="myModalLabel">Guardar Cliente</h4>
+								</div>
+								<div class="modal-body">
+									<div class="form-group">
+										<label>Sector Economico</label>
+										<input class="form-control-static" type="text" name="sector" id="sector">
+									</div>
+								</div>
+								<div class="modal-footer">
+									<div class="box-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+										<button type="submit" class="btn btn-primary">Guardar</button>
+									</div>
+								</div>
+							</div><!-- /.modal-content -->
+						</div><!-- /.modal-dialog -->
+					</div><!-- /.modal -->
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block MiJs %}
+<script src="{% static 'js/cliente.js' %}"></script>
+{% endblock %}
