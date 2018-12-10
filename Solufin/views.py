@@ -7,6 +7,7 @@ from django.contrib.auth import (
 from django.shortcuts import render, redirect
 from Solufin.forms import UserLoginForm
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 UserModel = get_user_model()
 
 
@@ -45,6 +46,7 @@ def acceso(request):
     )
 
 
+@login_required(login_url="login")
 def index(request):
     template_name = 'index/index.html'
     return render(
