@@ -2,6 +2,7 @@ from django.contrib.auth import (
     get_user_model,
     authenticate,
     login,
+    logout,
 )
 from django.shortcuts import render, redirect
 from Solufin.forms import UserLoginForm
@@ -58,3 +59,8 @@ def inactivo_user(request):
         request,
         template_name
     )
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
