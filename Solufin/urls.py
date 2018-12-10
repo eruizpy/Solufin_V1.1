@@ -15,13 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from Solufin.views import acceso, index, inactivo_user
+from Solufin.views import acceso, index, inactivo_user, logout_view
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', acceso, name='login'),
     path('index/', index, name='index'),
     path('inactivo/', inactivo_user, name='inactivo'),
     path('cliente/', include('apps.cliente.urls')),
+    path('login/', acceso, name='login'),
+    path(
+        'logout/',
+        logout_view,
+        name='logout',
+    ),
 ]
