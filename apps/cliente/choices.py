@@ -50,7 +50,7 @@ TipoDireccion = (
     (3, 'Comercial'),
     (4, 'Fiscal'),
 )
-Departamento = (
+Departamentos = (
     ('ASU', 'Asuncíon'),
     ('1', 'Concepción'),
     ('2', 'San Pedro'),

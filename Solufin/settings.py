@@ -112,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'es-py'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Asuncion'
 
 USE_I18N = True
 
@@ -130,6 +130,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "Static"),
 ]
 
+DATE_INPUT_FORMATS = ('%d-%m-%Y')
 # AUTHENTICATION_BACKENDS = (
 #     'Solufin.backends.EmailBackend',
 # )

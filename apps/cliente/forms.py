@@ -1,21 +1,23 @@
 from django import forms
-from apps.cliente.choices import (
-    SectoresEconomicos,
-    TipoDoc,
-    TipoPersona,
-    Nacionalidad,
-    EstadoCivil,
-    Generos,
-    TipoDireccion,
-    Pais,
-    Departamento
-)
+from apps.cliente.choices import *
+from apps.cliente.models import Cliente as ClienteModel
+import datetime
 
 
 class Registrar_Cliente_Form(forms.Form):
     SectorEconomico = forms.ChoiceField(
         label='Sector Economico',
         choices=SectoresEconomicos,
+        widget=forms.Select(
+            attrs={
+                'class': 'form-control',
+            },
+        ),
+    )
+    PaisDocumento = forms.ChoiceField(
+        label='Tipo de Persona',
+        choices=PaisDoc,
+        initial=1,
         widget=forms.Select(
             attrs={
                 'class': 'form-control',
@@ -42,7 +44,7 @@ class Registrar_Cliente_Form(forms.Form):
             },
         ),
     )
-    IdTipoDoc = forms.ChoiceField(
+    TipoDoc = forms.ChoiceField(
         label='Tipo de Documento',
         initial=4,
         choices=TipoDoc,
@@ -87,6 +89,7 @@ class Registrar_Cliente_Form(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
+                'placeholder': 'dd/mm/yyyy',
             },
         ),
     )
@@ -147,7 +150,7 @@ class Registrar_Cliente_Form(forms.Form):
     )
     Departamento = forms.ChoiceField(
         label='Departamento',
-        choices=Departamento,
+        choices=Departamentos,
         widget=forms.Select(
             attrs={
                 'class': 'form-control',
@@ -181,3 +184,62 @@ class Registrar_Cliente_Form(forms.Form):
             },
         ),
     )
+
+    ComprobanteIngreso = forms.CharField(
+        label='Comprobante de Ingreso',
+        max_length=50,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+            },
+        ),
+    )
+
+    Salario = forms.CharField(
+        label='Salario',
+        max_length=9,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+            },
+        ),
+    )
+
+    CargoTrabajo = forms.CharField(
+        label='Cargo en el trabajo',
+        max_length=50,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+            },
+        ),
+    )
+
+    EsDependiente = forms.ChoiceField(
+        label='Comprobante de Ingreso',
+        choices=EsDependiente,
+        widget=forms.Select(
+            attrs={
+                'class': 'form-control',
+            },
+        ),
+    )
+
+    def clean_FechaNacimiento(self, *args, **kwargs):
+        Nacimiento = self.cleaned_data.get("FechaNacimiento")
+        fecha = datetime.datetime.strptime(
+            Nacimiento,
+            "%d/%m/%Y",
+        ).strftime("%Y-%m-%d")
+        return fecha
+
+    def clean_NroDoc(self, *args, **kwargs):
+        documento = self.cleaned_data.get("NroDoc")
+        try:
+            queryset = ClienteModel.objects.get(NumeroDocumento=documento)
+            if queryset:
+                raise forms.ValidationError(
+                    "Usuario %s ya esta registrado" % queryset
+                )
+        except ClienteModel.DoesNotExist:
+            return documento

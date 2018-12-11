@@ -8,6 +8,20 @@
 				<div class="box-header with-border">
 					<h3 class="box-title">Formulario Registro de Cliente</h3>
 				</div>
+  {% if form.errors %}
+    {% for field in form %}
+      {% for error in field.errors %}
+      <div class="alert alert-danger">
+      <strong>{{ error|escape }}</strong>
+      </div>
+      {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+      <div class="alert alert-danger">
+      <strong>{{ error|escape }}</strong>
+      </div>
+    {% endfor %}
+  {% endif %}
 				<!-- /.box-header -->
 				<!-- form start -->
 				<form method="POST" role="form">
@@ -15,7 +29,7 @@
 						{% csrf_token %}
 						<!-- Row 1 -->
 						<div class="row">
-							<div class="form-group col-md-2">
+							<div class="form-group col-md-3">
 								<label for="id_SectorEconomico">Sector Economico</label>
 								{{form.SectorEconomico}}
 							</div>
@@ -24,23 +38,21 @@
 								{{form.TipoPersona}}
 							</div>
 							<div class="form-group col-md-2">
-								<label for="id_NroDoc">Numero Documento</label>
-								{{form.NroDoc}}
-								{% if form.NroDoc.errors %}
-							    <ol>
-							    {% for error in form.NroDoc.errors %}
-							        <li><strong>{{ error|escape }}</strong></li>
-							    {% endfor %}
-							    </ol>
-							{% endif %}
+								<label for="id_PaisDocumento">Pais Documento</label>
+								{{form.PaisDocumento}}
+							</div>
+							<div class="form-group col-md-3">
+								<label for="id_TipoDoc">Tipo de Documento</label>
+								{{form.TipoDoc}}
 							</div>
 							<div class="form-group col-md-2">
-								<label for="id_IdTipoDoc">Tipo de Documento</label>
-								{{form.IdTipoDoc}}
+								<label for="id_NroDoc">Numero Documento</label>
+								{{form.NroDoc}}
 							</div>
 						</div>
-						<!-- Row 2 -->
+
 						<div class="row">
+
 							<div class="form-group col-md-2">
 								<label for="id_PrimerApellido">Apellido/s</label>
 								{{form.PrimerApellido}}
@@ -58,24 +70,30 @@
 								{{form.FechaNacimiento}}
 							</div>
 							<div class="form-group col-md-2">
-								<label for="id_Nacionalidad">Nacionalidad</label>
-								{{form.Nacionalidad}}
+								<label for="id_Genero">Genero</label>
+								{{form.Genero}}
 							</div>
 							<div class="form-group col-md-2">
 								<label for="id_EstadoCivil">Estado Civil</label>
 								{{form.EstadoCivil}}
 							</div>
 						</div>
-						<!-- Row 3 -->
+						<!-- Row 2 -->
 						<div class="row">
 							<div class="form-group col-md-2">
-								<label for="id_Genero">Genero</label>
-								{{form.Genero}}
+								<label for="id_Nacionalidad">Nacionalidad</label>
+								{{form.Nacionalidad}}
 							</div>
+						</div>
+						<!-- Row 3 -->
+						<div class="row">
 							<div class="form-group col-md-2">
 								<label for="id_Telefono">Telefono</label>
 								{{form.Telefono}}
 							</div>
+						</div>
+						<!-- Row 4 -->
+						<div class="row">
 							<div class="form-group col-md-2">
 								<label for="id_TipoDireccion">Tipo de Direccion</label>
 								{{form.TipoDireccion}}
@@ -84,9 +102,6 @@
 								<label for="id_Pais">Pais</label>
 								{{form.Pais}}
 							</div>
-						</div>
-						<!-- Row 4 -->
-						<div class="row">
 							<div class="form-group col-md-2">
 								<label for="id_Departamento">Departamento</label>
 								{{form.Departamento}}
@@ -104,42 +119,64 @@
 								{{form.DireccionLibre}}
 							</div>
 						</div>
+
+						<div class="row">
+							<div class="form-group col-md-2">
+								<label for="id_ComprobanteIngreso">Comprobante de Ingreso</label>
+								{{form.ComprobanteIngreso}}
+							</div>
+							<div class="form-group col-md-2">
+								<label for="id_Salario">Salario</label>
+								{{form.Salario}}
+							</div>
+							<div class="form-group col-md-2">
+								<label for="id_CargoTrabajo">Cargo del Trabajo</label>
+								{{form.CargoTrabajo}}
+							</div>
+							<div class="form-group col-md-2">
+								<label for="id_EsDependiente">Es Dependiente</label>
+								{{form.EsDependiente}}
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-2">
+								<button type="submit" class="btn btn-primary btn-lg">Guardar</button>
+							</div>
+						</div>
 					</div>
 					<!-- /.box-body -->
-					<button class="btn btn-primary btn-lg" id="miModal" data-toggle="modal" data-target="#myModal">
-					  Verificar
-					</button>
-
-					<!-- Modal -->
-					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<h4 class="modal-title" id="myModalLabel">Guardar Cliente</h4>
-								</div>
-								<div class="modal-body">
-									<div class="form-group">
-										<label>Sector Economico</label>
-										<input class="form-control-static" type="text" name="sector" id="sector">
-									</div>
-								</div>
-								<div class="modal-footer">
-									<div class="box-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-										<button type="submit" class="btn btn-primary">Guardar</button>
-									</div>
-								</div>
-							</div><!-- /.modal-content -->
-						</div><!-- /.modal-dialog -->
-					</div><!-- /.modal -->
 				</form>
 			</div>
 		</div>
 	</div>
 </div>
+<!-- Small modal -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Registro Exitoso...</h4>
+      </div>
+      <div class="modal-body">
+        <h3><p>Cliente numero {{NroCliente}}&hellip;</p></h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 {% endblock %}
 
 {% block MiJs %}
 <script src="{% static 'js/cliente.js' %}"></script>
+{% if successful_data %}
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#myModal").modal('show');
+	});
+</script>
+{% endif %}
 {% endblock %}
