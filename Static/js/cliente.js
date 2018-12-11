@@ -28,3 +28,29 @@ function getNombreCompleto(){
 	$("#id_NombreCompleto").siblings('label, i').addClass('active');
 	$("#id_NombreCompleto").val(nombre_completo);
 }
+
+$(document).on('change', '#id_TipoPersona', function(e){
+    e.preventDefault();
+    OcultarCampos();
+    return false;
+});
+
+function OcultarCampos(){
+	var estado = $("#id_TipoPersona").val();
+	console.log(estado);
+	if (estado!=1) {
+		$("#id_FechaNacimiento").css('display', 'none');
+		$("#Genero").css('display', 'none');
+		$("#EstadoCivil").css('display', 'none');
+		$("#Nombre").css('display', 'none');
+		$("#Apellido").css('display', 'none');
+		$("#Trabajo").css('display', 'none');
+	} else {
+		$("#FechaNacimiento").css('display', 'block');
+		$("#Genero").css('display', 'block');
+		$("#EstadoCivil").css('display', 'block');
+		$("#Nombre").css('display', 'block');
+		$("#Apellido").css('display', 'block');
+		$("#Trabajo").css('display', 'block');
+	}
+}

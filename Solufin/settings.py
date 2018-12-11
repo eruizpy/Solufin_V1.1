@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # Mis Apps.
     'apps.cliente',
+    'apps.propuesta',
 ]
 
 MIDDLEWARE = [

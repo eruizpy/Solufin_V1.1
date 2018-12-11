@@ -58,6 +58,7 @@ class Registrar_Cliente_Form(forms.Form):
         label='Apellido/s',
         max_length=30,
         strip=True,
+        required=False,
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
@@ -68,6 +69,7 @@ class Registrar_Cliente_Form(forms.Form):
         label='Nombre',
         max_length=30,
         strip=True,
+        required=False,
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
@@ -86,6 +88,7 @@ class Registrar_Cliente_Form(forms.Form):
     FechaNacimiento = forms.CharField(
         label='Fecha de Nacimiento',
         max_length=10,
+        required=False,
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
@@ -105,6 +108,7 @@ class Registrar_Cliente_Form(forms.Form):
     EstadoCivil = forms.ChoiceField(
         label='Estado Civil',
         choices=EstadoCivil,
+        required=False,
         widget=forms.Select(
             attrs={
                 'class': 'form-control',
@@ -115,6 +119,7 @@ class Registrar_Cliente_Form(forms.Form):
         label='Genero',
         initial='M',
         choices=Generos,
+        required=False,
         widget=forms.Select(
             attrs={
                 'class': 'form-control',
@@ -188,6 +193,7 @@ class Registrar_Cliente_Form(forms.Form):
     ComprobanteIngreso = forms.CharField(
         label='Comprobante de Ingreso',
         max_length=50,
+        required=False,
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
@@ -198,6 +204,7 @@ class Registrar_Cliente_Form(forms.Form):
     Salario = forms.CharField(
         label='Salario',
         max_length=9,
+        required=False,
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
@@ -208,6 +215,7 @@ class Registrar_Cliente_Form(forms.Form):
     CargoTrabajo = forms.CharField(
         label='Cargo en el trabajo',
         max_length=50,
+        required=False,
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
@@ -218,6 +226,7 @@ class Registrar_Cliente_Form(forms.Form):
     EsDependiente = forms.ChoiceField(
         label='Comprobante de Ingreso',
         choices=EsDependiente,
+        required=False,
         widget=forms.Select(
             attrs={
                 'class': 'form-control',
@@ -227,11 +236,14 @@ class Registrar_Cliente_Form(forms.Form):
 
     def clean_FechaNacimiento(self, *args, **kwargs):
         Nacimiento = self.cleaned_data.get("FechaNacimiento")
-        fecha = datetime.datetime.strptime(
-            Nacimiento,
-            "%d/%m/%Y",
-        ).strftime("%Y-%m-%d")
-        return fecha
+        if Nacimiento == '':
+            return None
+        else:
+            fecha = datetime.datetime.strptime(
+                Nacimiento,
+                "%d/%m/%Y",
+            ).strftime("%Y-%m-%d")
+            return fecha
 
     def clean_NroDoc(self, *args, **kwargs):
         documento = self.cleaned_data.get("NroDoc")

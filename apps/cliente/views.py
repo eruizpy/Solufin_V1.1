@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from apps.cliente.forms import Registrar_Cliente_Form
 from apps.cliente.models import Cliente
 

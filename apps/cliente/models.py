@@ -1,7 +1,6 @@
 from django.db import models
 from apps.cliente.choices import *
 from django.contrib.auth import get_user_model
-from django.conf import settings
 UserModel = get_user_model()
 
 
@@ -27,20 +26,24 @@ class Cliente(models.Model):
     )
     Apellido = models.CharField(
         max_length=30,
+        blank=True,
     )
     Nombre = models.CharField(
         max_length=30,
+        blank=True,
     )
     NombreCompleto = models.CharField(
         max_length=60,
     )
-    FechaNacimiento = models.DateField()
+    FechaNacimiento = models.DateField(blank=True, null=True)
     Genero = models.CharField(
         max_length=1,
         choices=Generos,
+        blank=True
     )
     EstadoCivil = models.PositiveSmallIntegerField(
         choices=EstadoCivil,
+        blank=True
     )
     Nacionalidad = models.CharField(
         max_length=2,
@@ -59,13 +62,14 @@ class Cliente(models.Model):
         choices=Departamentos,
     )
     Ciudad = models.CharField(max_length=30)
-    Bario = models.CharField(max_length=30)
+    Barrio = models.CharField(max_length=30)
     DireccionLibre = models.CharField(max_length=255)
-    ComprobanteIngreso = models.CharField(max_length=30)
-    Salario = models.CharField(max_length=10)
-    CargoTrabajo = models.CharField(max_length=30)
+    ComprobanteIngreso = models.CharField(max_length=30, blank=True)
+    Salario = models.CharField(max_length=10, blank=True)
+    CargoTrabajo = models.CharField(max_length=30, blank=True)
     Dependiente = models.PositiveSmallIntegerField(
         choices=EsDependiente,
+        blank=True,
     )
 
     class Meta:
