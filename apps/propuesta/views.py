@@ -1,3 +1,9 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def Registrar_Propuesta(request):
+    Template_Name = "propuesta/propuesta.html"
+    return render(
+        request,
+        Template_Name,
+    )
