@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from apps.propuesta.forms import Propuesta_Form
 
 
 def Registrar_Propuesta(request):
@@ -6,4 +7,7 @@ def Registrar_Propuesta(request):
     return render(
         request,
         Template_Name,
+        {
+            'propuesta': Propuesta_Form,
+        },
     )
