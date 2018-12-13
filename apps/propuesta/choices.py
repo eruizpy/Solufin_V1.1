@@ -27,3 +27,12 @@ Modalidad = (
     (2, 'Descuento de cheque diferido'),
     (3, 'Pagare'),
 )
+
+SectoresEconomicos = (
+    (1, 'Profesional Independiente'),
+    (2, 'Comerciante'),
+    (3, 'Industrial'),
+    (4, 'Agropecuario'),
+    (5, 'Empleado Asalariado'),
+    (6, 'Otro')
+)

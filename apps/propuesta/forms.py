@@ -4,6 +4,15 @@ from apps.propuesta.choices import *
 
 
 class Propuesta_Form(forms.Form):
+    NroAgente = forms.CharField(
+        max_length=10,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'C.I. o R.U.C.',
+            },
+        ),
+    )
     NroCliente = forms.CharField(
         max_length=10,
         widget=forms.TextInput(
@@ -19,35 +28,86 @@ class Propuesta_Form(forms.Form):
             attrs={
                 'class': 'form-control',
                 'placeholder': 'Nombre Completo',
+                'readonly': 'True',
             },
         ),
     )
     SectorEconomico = forms.CharField(
         max_length=30,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'readonly': 'True',
+            },
+        ),
     )
     Telefono = forms.CharField(
         max_length=10,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Ejemplo: 0981405221',
+                'readonly': 'True',
+            },
+        ),
     )
     DireccionLibre = forms.CharField(
-        max_length=30
+        max_length=30,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'readonly': 'True',
+            },
+        ),
     )
     Garantia = forms.ChoiceField(
         choices=Garantia,
+        widget=forms.Select(
+            attrs={
+                'class': 'form-control',
+            },
+        ),
     )
     Moneda = forms.ChoiceField(
-        choices=Moneda
+        choices=Moneda,
+        widget=forms.Select(
+            attrs={
+                'class': 'form-control',
+            },
+        ),
     )
     Modalidad = forms.ChoiceField(
-        choices=Modalidad
+        choices=Modalidad,
+        widget=forms.Select(
+            attrs={
+                'class': 'form-control',
+            },
+        ),
     )
     Destino = forms.CharField(
-        max_length=30
+        max_length=30,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+            },
+        ),
     )
     Tasa = forms.CharField(
-        max_length=2
+        max_length=2,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+            },
+        ),
     )
     Comision = forms.DecimalField(
-        decimal_places=6
+        decimal_places=6,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Ejemplo: 00,000000'
+            },
+        ),
     )
 
 

@@ -172,11 +172,11 @@
 
 {% block MiJs %}
 <script src="{% static 'js/cliente.js' %}"></script>
-{% if successful_data %}
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#myModal").modal('show');
-	});
-</script>
+	{% if successful_data %}
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#myModal").modal('show');
+		});
+	</script>
 {% endif %}
 {% endblock %}

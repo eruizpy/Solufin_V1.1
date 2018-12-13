@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from apps.cliente.forms import Registrar_Cliente_Form
 from apps.cliente.models import Cliente
+from django.http import JsonResponse
+from django.core.exceptions import ObjectDoesNotExist
 
 
 def Registrar_Cliente(request):
@@ -60,3 +62,21 @@ def Registrar_Cliente(request):
             'successful_data': successful_data,
         }
     )
+
+
+def get_Cliente(request):
+    cliente = {}
+    numero = request.GET.get('numero')
+    try:
+        queryset = Cliente.objects.get(NumeroDocumento=numero)
+        cliente = {
+            'nombre': queryset.NombreCompleto,
+            'sector': queryset.get_SectorEconomico_display(),
+            'telefono': queryset.Telefono,
+            'direccion': queryset.DireccionLibre,
+        }
+    except ObjectDoesNotExist:
+        cliente = {
+            'NoMatch': 'Cliente no registrado...',
+        }
+    return JsonResponse(cliente)
