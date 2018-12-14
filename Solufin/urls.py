@@ -23,6 +23,7 @@ urlpatterns = [
     path('index/', index, name='index'),
     path('inactivo/', inactivo_user, name='inactivo'),
     path('', include('apps.cliente.urls')),
+    path('', include('apps.agente.urls')),
     path('propuesta/', include('apps.propuesta.urls')),
     path('login/', acceso, name='login'),
     path(

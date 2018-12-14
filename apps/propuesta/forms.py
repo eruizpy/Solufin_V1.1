@@ -13,6 +13,16 @@ class Propuesta_Form(forms.Form):
             },
         ),
     )
+    NombreAgente = forms.CharField(
+        max_length=60,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Nombre Completo',
+                'readonly': 'True',
+            },
+        ),
+    )
     NroCliente = forms.CharField(
         max_length=10,
         widget=forms.TextInput(
@@ -105,7 +115,7 @@ class Propuesta_Form(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Ejemplo: 00,000000'
+                'placeholder': 'Ejemplo: 00.000000'
             },
         ),
     )
@@ -114,22 +124,67 @@ class Propuesta_Form(forms.Form):
 class Cheques(forms.Form):
     Librador = forms.CharField(
         max_length=30,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Numero de Documento'
+            },
+        ),
     )
     Banco = forms.CharField(
-        max_length=30
+        max_length=30,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Nombre del Banco'
+            },
+        ),
     )
     NroCuenta = forms.CharField(
-        max_length=30
+        max_length=30,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'sin puntos ni coma.'
+            },
+        ),
     )
     NroCheque = forms.CharField(
-        max_length=30
+        max_length=30,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'sin puntos ni coma.'
+            },
+        ),
     )
-    monto = forms.IntegerField()
-    F_Emision = forms.DateField()
-    F_Pago = forms.DateField()
+    monto = forms.IntegerField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'sin puntos ni coma.'
+            },
+        ),
+    )
+    F_Emision = forms.DateField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'dd/mm/yyyy'
+            },
+        ),
+    )
+    F_Pago = forms.DateField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'dd/mm/yyyy'
+            },
+        ),
+    )
 
 
-ChequesFormsets = formset_factory(
+ChequeFormSet = formset_factory(
     Cheques,
     extra=1
 )

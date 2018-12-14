@@ -1,108 +1,116 @@
 {% extends "base.html" %}
 {% load static %}
 {% block contenido %}
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
+<div class="row">
+	<form method="POST" role="form" id="OperacionForm">
+		<div class="col-md-6">
 			<div class="box box-primary">
 				<div class="box-header with-border">
-					<h3 class="box-title">Registrar Propuesta de Operacion</h3>
+				<h3 class="box-title">Registrar Propuesta de Operacion</h3>
 				</div>
-				  {% if form.errors %}
-				    {% for field in form %}
-				      {% for error in field.errors %}
-				      <div class="alert alert-danger">
-				      <strong>{{ error|escape }}</strong>
-				      </div>
-				      {% endfor %}
-				    {% endfor %}
-				    {% for error in form.non_field_errors %}
-				      <div class="alert alert-danger">
-				      <strong>{{ error|escape }}</strong>
-				      </div>
-				    {% endfor %}
-				  {% endif %}
-				<!-- /.box-header -->
-				<!-- form start -->
-				<form method="POST" role="form">
-					<div class="box-body">
-						{% csrf_token %}
-						<div class="row">
-							<div class="form-group col-md-2">
-								<label for="id_NroCliente">Cliente</label>
-								{{propuesta.NroCliente}}
-							</div>
-							<div class="form-group col-md-2">
-								<label for="id_Apellido">Apellido</label>
-								{{propuesta.Apellido}}
-							</div>
-							<div class="form-group col-md-2">
-								<label for="id_Nombre">Nombre</label>
-								{{propuesta.Nombre}}
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group col-md-2">
-								<label for="id_NroCliente">Cliente</label>
-								{{propuesta.NroCliente}}
-							</div>
-							<div class="form-group col-md-3">
-								<label for="id_NombreCliente">Nombre y Apellido</label>
-								{{propuesta.NombreCliente}}
-							</div>
-							<div class="form-group col-md-3">
-								<label for="id_SectorEconomico">Sector Economico</label>
-								{{propuesta.SectorEconomico}}
-							</div>
-							<div class="form-group col-md-2">
-								<label for="id_Telefono">Telefono</label>
-								{{propuesta.Telefono}}
-							</div>
-							<div class="form-group col-md-2">
-								<label for="id_DireccionLibre">Direccion</label>
-								{{propuesta.DireccionLibre}}
-							</div>
-							<div class="form-group col-md-4">
-								<label for="id_Garantia">Garantia</label>
-								{{propuesta.Garantia}}
-							</div>
-							<div class="form-group col-md-4">
-								<label for="id_Moneda">Moneda</label>
-								{{propuesta.Moneda}}
-							</div>
-							<div class="form-group col-md-4">
-								<label for="id_Modalidad">Modalidad</label>
-								{{propuesta.Modalidad}}
-							</div>
-							<div class="form-group col-md-4">
-								<label for="id_Destino">Destino</label>
-								{{propuesta.Destino}}
-							</div>
-							<div class="form-group col-md-4">
-								<label for="id_Tasa">Tasa</label>
-								{{propuesta.Tasa}}
-							</div>
-							<div class="form-group col-md-4">
-								<label for="id_Comision">Comision</label>
-								{{propuesta.Comision}}
-							</div>
-						</div>
-
-						<!-- CHEQUES -->
-						<div class="row">
-							
-						</div>
-						<div class="row">
-							<div class="form-group col-md-2">
-								<button type="submit" class="btn btn-primary btn-lg">Guardar</button>
-							</div>
-						</div>
+					{% if propuesta.errors %}
+					{% for field in propuesta %}
+					{% for error in field.errors %}
+					<div class="alert alert-danger">
+					{{field.label_tag}}<strong> {{ error|escape }}</strong>
 					</div>
-					<!-- /.box-body -->
-				</form>
+					{% endfor %}
+					{% endfor %}
+					{% for error in propuesta.non_field_errors %}
+					<div class="alert alert-danger">
+					<strong>{{ error|escape }}</strong>
+					</div>
+					{% endfor %}
+					{% endif %}
+					<!-- /.box-header -->
+					<!-- form start -->
+				<div class="box-body">
+					{% csrf_token %}
+					<div class="form-group">
+					<label for="id_NroAgente">Agente</label>
+					{{propuesta.NroAgente}}
+					</div>
+					<div class="form-group">
+					<label for="id_NombreAgente">Nombre y Apellido</label>
+					{{propuesta.NombreAgente}}
+					</div>
+					<div class="form-group">
+					<label for="id_NroCliente">Cliente</label>
+					{{propuesta.NroCliente}}
+					</div>
+					<div class="form-group">
+					<label for="id_NombreCliente">Nombre y Apellido</label>
+					{{propuesta.NombreCliente}}
+					</div>
+					<div class="form-group">
+					<label for="id_SectorEconomico">Sector Economico</label>
+					{{propuesta.SectorEconomico}}
+					</div>
+					<div class="form-group">
+					<label for="id_Telefono">Telefono</label>
+					{{propuesta.Telefono}}
+					</div>
+					<div class="form-group">
+					<label for="id_DireccionLibre">Direccion</label>
+					{{propuesta.DireccionLibre}}
+					</div>
+					<div class="form-group">
+					<label for="id_Garantia">Garantia</label>
+					{{propuesta.Garantia}}
+					</div>
+					<div class="form-group">
+					<label for="id_Moneda">Moneda</label>
+					{{propuesta.Moneda}}
+					</div>
+					<div class="form-group">
+					<label for="id_Modalidad">Modalidad</label>
+					{{propuesta.Modalidad}}
+					</div>
+					<div class="form-group">
+					<label for="id_Destino">Destino</label>
+					{{propuesta.Destino}}
+					</div>
+					<div class="form-group">
+					<label for="id_Tasa">Tasa</label>
+					{{propuesta.Tasa}}
+					</div>
+					<div class="form-group">
+					<label for="id_Comision">Comision</label>
+					{{propuesta.Comision}}
+					</div>
+					<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-lg">Guardar</button>
+					</div>
+				</div>
+				<!-- /.box-body -->
 			</div>
 		</div>
-	</div>
+		<div class="col-md-6">
+			<div class="box box-primary">
+				<div class="box-header with-border">
+					<h3 class="box-title">Agregar Cheques</h3>
+				</div>
+				{% if propuesta.errors %}
+					{% for field in propuesta %}
+						{% for error in field.errors %}
+							<div class="alert alert-danger">
+							{{field.label_tag}}<strong> {{ error|escape }}</strong>
+							</div>
+						{% endfor %}
+					{% endfor %}
+					{% for error in propuesta.non_field_errors %}
+						<div class="alert alert-danger">
+						<strong>{{ error|escape }}</strong>
+						</div>
+					{% endfor %}
+				{% endif %}
+				<!-- /.box-header -->
+				<div class="box-body">
+					{{cheque}}
+				</div>
+			</div>
+		</div>
+	</form>
 </div>
 <div class="modal fade" id="getModal1" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
@@ -113,6 +121,22 @@
       </div>
       <div class="modal-body">
         <h3><p>Cliente no existe&hellip;</p></h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal fade" id="getModal2" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">No coincide con ningun registro...</h4>
+      </div>
+      <div class="modal-body">
+        <h3><p>Agente no existe&hellip;</p></h3>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

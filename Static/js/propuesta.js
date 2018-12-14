@@ -1,3 +1,10 @@
+$('#OperacionForm').on('keyup keypress', function(e) {
+    var keyCode = e.keyCode || e.which;
+        if (keyCode === 13) { 
+        e.preventDefault();
+        return false;
+    }
+});
 document.getElementById('id_NroCliente').onkeydown = function(event) {
     if (event.keyCode == 13) {
         var numero = $("#id_NroCliente").val();
@@ -21,6 +28,27 @@ document.getElementById('id_NroCliente').onkeydown = function(event) {
 	        		$('#id_DireccionLibre').val(response.direccion);
         		}
         	},
+        });
+    }
+}
+
+document.getElementById('id_NroAgente').onkeydown = function(event) {
+    if (event.keyCode == 13) {
+        var numero = $("#id_NroAgente").val();
+        $.ajax({
+            type: "GET",
+            url: "/ajax/get_agente/",
+            data: {
+                'numero': numero
+            },
+            success: function(response){
+                if(response.NoMatch){
+                    $('#id_NombreAgente').val('');
+                    $("#getModal2").modal('show');
+                }else{
+                    $('#id_NombreAgente').val(response.nombre);
+                }
+            },
         });
     }
 }
