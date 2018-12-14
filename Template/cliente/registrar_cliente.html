@@ -1,155 +1,135 @@
 {% extends "base.html" %}
 {% load static %}
 {% block contenido %}
-<div class="container">
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-8 col-md-offset-2">
 			<div class="box box-primary">
 				<div class="box-header with-border">
 					<h3 class="box-title">Formulario Registro de Cliente</h3>
 				</div>
-  {% if form.errors %}
-    {% for field in form %}
-      {% for error in field.errors %}
-      <div class="alert alert-danger">
-      <strong>{{ error|escape }}</strong>
-      </div>
-      {% endfor %}
-    {% endfor %}
-    {% for error in form.non_field_errors %}
-      <div class="alert alert-danger">
-      <strong>{{ error|escape }}</strong>
-      </div>
-    {% endfor %}
-  {% endif %}
+				  {% if form.errors %}
+				    {% for field in form %}
+				      {% for error in field.errors %}
+				      <div class="alert alert-danger">
+				      <strong>{{ error|escape }}</strong>
+				      </div>
+				      {% endfor %}
+				    {% endfor %}
+				    {% for error in form.non_field_errors %}
+				      <div class="alert alert-danger">
+				      <strong>{{ error|escape }}</strong>
+				      </div>
+				    {% endfor %}
+				  {% endif %}
 				<!-- /.box-header -->
 				<!-- form start -->
 				<form method="POST" role="form">
 					<div class="box-body">
 						{% csrf_token %}
 						<!-- Row 1 -->
-						<div class="row">
-							<div class="form-group col-md-3">
+							<div class="form-group">
 								<label for="id_SectorEconomico">Sector Economico</label>
 								{{form.SectorEconomico}}
 							</div>
-							<div class="form-group col-md-2">
+							<div class="form-group">
 								<label for="id_TipoPersona">Tipo de Persona</label>
 								{{form.TipoPersona}}
 							</div>
-							<div class="form-group col-md-2">
+							<div class="form-group">
 								<label for="id_PaisDocumento">Pais Documento</label>
 								{{form.PaisDocumento}}
 							</div>
-							<div class="form-group col-md-3">
+							<div class="form-group">
 								<label for="id_TipoDoc">Tipo de Documento</label>
 								{{form.TipoDoc}}
 							</div>
-							<div class="form-group col-md-2">
+							<div class="form-group">
 								<label for="id_NroDoc">Numero Documento</label>
 								{{form.NroDoc}}
 							</div>
-						</div>
-
-						<div class="row">
-
-							<div class="form-group col-md-2" id="Apellido">
+							<div class="form-group" id="Apellido">
 								<label for="id_PrimerApellido">Apellido/s</label>
 								{{form.PrimerApellido}}
 							</div>
-							<div class="form-group col-md-2" id="Nombre">
+							<div class="form-group" id="Nombre">
 								<label for="id_PrimerNombre">Nombre/s</label>
 								{{form.PrimerNombre}}
 							</div>
-							<div class="form-group col-md-2">
+							<div class="form-group">
 								<label for="id_NombreCompleto">Nombre Completo</label>
 								{{form.NombreCompleto}}
 							</div>
-							<div class="form-group col-md-2" id="id_FechaNacimiento">
+							<div class="form-group" id="id_FechaNacimiento">
 								<label for="id_FechaNacimiento">Fecha de Nacimiento</label>
 								{{form.FechaNacimiento}}
 							</div>
-							<div class="form-group col-md-2" id="Genero">
+							<div class="form-group" id="Genero">
 								<label for="id_Genero">Genero</label>
 								{{form.Genero}}
 							</div>
-							<div class="form-group col-md-2" id="EstadoCivil">
+							<div class="form-group" id="EstadoCivil">
 								<label for="id_EstadoCivil">Estado Civil</label>
 								{{form.EstadoCivil}}
 							</div>
-						</div>
-						<!-- Row 2 -->
-						<div class="row">
-							<div class="form-group col-md-2">
+							<div class="form-group">
 								<label for="id_Nacionalidad">Nacionalidad</label>
 								{{form.Nacionalidad}}
 							</div>
-						</div>
-						<!-- Row 3 -->
-						<div class="row">
-							<div class="form-group col-md-2">
+							<div class="form-group">
 								<label for="id_Telefono">Telefono</label>
 								{{form.Telefono}}
 							</div>
-						</div>
-						<!-- Row 4 -->
-						<div class="row">
-							<div class="form-group col-md-2">
+							<div class="form-group">
 								<label for="id_TipoDireccion">Tipo de Direccion</label>
 								{{form.TipoDireccion}}
 							</div>
-							<div class="form-group col-md-2">
+							<div class="form-group">
 								<label for="id_Pais">Pais</label>
 								{{form.Pais}}
 							</div>
-							<div class="form-group col-md-2">
+							<div class="form-group">
 								<label for="id_Departamento">Departamento</label>
 								{{form.Departamento}}
 							</div>
-							<div class="form-group col-md-2">
+							<div class="form-group">
 								<label for="id_Ciudad">Ciudad</label>
 								{{form.Ciudad}}
 							</div>
-							<div class="form-group col-md-2">
+							<div class="form-group">
 								<label for="id_Barrio">Barrio</label>
 								{{form.Barrio}}
 							</div>
-							<div class="form-group col-md-6">
+							<div class="form-group">
 								<label for="id_DireccionLibre">Direccion Libre</label>
 								{{form.DireccionLibre}}
 							</div>
-						</div>
-
-						<div class="row" id="Trabajo">
-							<div class="form-group col-md-2">
+						<div id="Trabajo">
+							<div class="form-group">
 								<label for="id_ComprobanteIngreso">Comprobante de Ingreso</label>
 								{{form.ComprobanteIngreso}}
 							</div>
-							<div class="form-group col-md-2">
+							<div class="form-group">
 								<label for="id_Salario">Salario</label>
 								{{form.Salario}}
 							</div>
-							<div class="form-group col-md-2">
+							<div class="form-group">
 								<label for="id_CargoTrabajo">Cargo del Trabajo</label>
 								{{form.CargoTrabajo}}
 							</div>
-							<div class="form-group col-md-2">
+							<div class="form-group">
 								<label for="id_EsDependiente">Es Dependiente</label>
 								{{form.EsDependiente}}
 							</div>
 						</div>
-						<div class="row">
-							<div class="form-group col-md-2">
+							<div class="form-group">
 								<button type="submit" class="btn btn-primary btn-lg">Guardar</button>
 							</div>
-						</div>
 					</div>
 					<!-- /.box-body -->
 				</form>
 			</div>
 		</div>
 	</div>
-</div>
 <!-- Small modal -->
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
