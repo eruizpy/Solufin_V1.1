@@ -40,7 +40,6 @@ def Registrar_Cliente(request):
             obj.CargoTrabajo = form.cleaned_data.get("CargoTrabajo")
             obj.Dependiente = form.cleaned_data.get("EsDependiente")
             obj.save()
-            print(obj.idCliente)
             successful_data = True
             form = Registrar_Cliente_Form()
             return render(
