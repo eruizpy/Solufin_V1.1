@@ -87,15 +87,15 @@
 				<div class="box-header with-border">
 					<div><h3 class="box-title">Agregar Cheques</h3></div>
 				</div>
-				{% if propuesta.errors %}
-					{% for field in propuesta %}
+				{% if cheque.errors %}
+					{% for field in cheque %}
 						{% for error in field.errors %}
 							<div class="alert alert-danger">
 							{{field.label_tag}}<strong> {{ error|escape }}</strong>
 							</div>
 						{% endfor %}
 					{% endfor %}
-					{% for error in propuesta.non_field_errors %}
+					{% for error in cheque.non_field_errors %}
 						<div class="alert alert-danger">
 						<strong>{{ error|escape }}</strong>
 						</div>
@@ -120,8 +120,8 @@
 							</tr>
 						</thead>
 						<tbody>
+							{% for ch in cheque %}
 							<tr id="{{ cheque.prefix }}-row" class="dynamic-form">
-								{% for ch in cheque %}
 								<td>{{ch.Librador}}</td>
 								<td>{{ch.Banco}}</td>
 								<td>{{ch.NroCuenta}}</td>
@@ -130,10 +130,10 @@
 								<td>{{ch.Emision}}</td>
 								<td>{{ch.Pago}}</td>
 								<td {% if forloop.first %} class="hidden" {% endif %}>
-								<a id="remove-{{ form.prefix }}-row" href="javascript:void(0)" class="delete-row btn btn-block btn-danger"><i class="fa fa-minus"></i></a>
+								<a id="remove-{{ cheque.prefix }}-row" href="javascript:void(0)" class="delete-row btn btn-block btn-danger"><i class="fa fa-minus"></i></a>
 								</td>
-								{% endfor %}
 							</tr>
+							{% endfor %}
 							<tr>
 								<td><a href="javascript:void(0)" class="add-row btn btn-block btn-success"><i class="fa fa-plus-square"></i></a>
 								</td>

@@ -57,6 +57,12 @@ $(function(){
     $('.add-row').click(function() {
         return addForm(this, 'cheque');
     });
+    $('.delete-row').click(function(){
+        return deleteForm(this, 'cheque');
+    });
+    $('.Emision').keypress(function(event){
+        return AutoSlash(this ,event);
+    });
 })
 
 function addForm(btn, prefix) {
@@ -71,8 +77,6 @@ function addForm(btn, prefix) {
         deleteForm(this, prefix);
     });
     $('#id_'+ prefix +'-TOTAL_FORMS').val(formCount + 1);
-    console.log('Cantidad de Formularios '+ formCount);
-    console.log('Clonado '+row);
     return false;
 }
 
@@ -82,4 +86,27 @@ function updateElementIndex(el, prefix, ndx){
     if ($(el).attr("for")) $(el).attr("for", $(el).attr("for").replace(id_regex, replacement));
     if (el.id) el.id = el.id.replace(id_regex, replacement);
     if (el.name) el.name = el.name.replace(id_regex, replacement);
+}
+
+function deleteForm(btn, prefix) {
+    $(btn).parents('.dynamic-form').remove();
+    var forms = $('.dynamic-form');
+    $('#id_' + prefix + '-TOTAL_FORMS').val(forms.length);
+    for (var i=0, formCount=forms.length; i<formCount; i++) {
+        $(forms.get(i)).children().not(':last').children().each(function() {
+            updateElementIndex(this, prefix, i);
+        });
+    }
+    return false;
+}
+
+function AutoSlash(data, event){
+    if(event.which !== 8) { 
+        var numChars = $(data).val().length;
+        if(numChars === 2 || numChars === 5){
+            var thisVal = $(data).val();
+            thisVal += '/';
+            $(data).val(thisVal);
+        }
+  }
 }

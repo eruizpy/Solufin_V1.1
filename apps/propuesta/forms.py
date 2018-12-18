@@ -169,8 +169,9 @@ class Cheques(forms.Form):
     Emision = forms.DateField(
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control',
-                'placeholder': 'dd/mm/yyyy'
+                'class': 'form-control Emision',
+                'placeholder': 'dd/mm/yyyy',
+                'maxlength': '10',
             },
         ),
     )
@@ -178,7 +179,8 @@ class Cheques(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'dd/mm/yyyy'
+                'placeholder': 'dd/mm/yyyy',
+                'maxlength': '10',
             },
         ),
     )
