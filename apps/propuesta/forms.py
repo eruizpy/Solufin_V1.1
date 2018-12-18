@@ -166,7 +166,7 @@ class Cheques(forms.Form):
             },
         ),
     )
-    F_Emision = forms.DateField(
+    Emision = forms.DateField(
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
@@ -174,7 +174,7 @@ class Cheques(forms.Form):
             },
         ),
     )
-    F_Pago = forms.DateField(
+    Pago = forms.DateField(
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
